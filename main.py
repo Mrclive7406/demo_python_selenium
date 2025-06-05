@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from backend_app.schemas.item_model import Item
 # from backend_app.core.config import settings
 # from backend_app.api.routers import main_router
 
@@ -25,6 +25,11 @@ async def read_root():
 @app.get(TEST_ROUTERS)
 async def test_hendler():
     return {"message": "я тестовый"}
+
+
+@app.post("/create-item/")
+async def create_item(item: Item):
+    return {"id": item.id, "name": item.name, "amount": item.amount}
 
 
 # def cron_job():
